@@ -1,0 +1,31 @@
+<br>
+<br>
+<div class="container-fluid" id="stockInfoContainer">
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="form">
+        <input type="text" list="codeNmLs" class="form-control form-input" formControlName="code"
+          placeholder="please enter the code for search" (ngModelChange)="selectCodeNmLs()">
+        <datalist id='codeNmLs'>
+          <div *ngIf="codeNmLs">
+            <div *ngFor="let codeNm of this.codeNmLs">
+              <option value="{{codeNm.Code}} - {{codeNm.Name}}"></option>
+            </div>
+          </div>
+        </datalist>
+
+        <span class="glyphicon form-control-feedback"
+          *ngIf="form.controls['code'].invalid && (form.controls['code'].dirty || form.controls['code'].touched)">
+          <span *ngIf="form.controls['code'].errors">
+            <pre *ngIf="form.controls['code'].errors['required']" id="requiredMsg"> the codeNm is required </pre>
+          </span>
+        </span>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-candlestick-chart [code]="this.form.value.code"></app-candlestick-chart>
+    </div>
+  </div>
+</div>

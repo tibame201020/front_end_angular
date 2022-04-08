@@ -1,0 +1,78 @@
+<hr>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col selfInfo">
+      <mat-card class="example-card" style="height: 25rem;">
+        <mat-card-title>{{this.PraticeModeService.getRecord().accountOutline}}</mat-card-title>
+        <mat-card-subtitle>{{this.PraticeModeService.getRecord().recordPk.date}}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="self-info">
+              <table class="table caption-top">
+                <tbody>
+                  <tr>
+                    <th scope="row" style="width: 5rem;">cash</th>
+                    <td>{{this.PraticeModeService.getRecord().cash | number}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="width: 5rem;">stocks</th>
+                    <td>{{getStocks()}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="width: 5rem;">total</th>
+                    <td>{{getAssestTotal() | number}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-tab>
+            <mat-tab label="stock-composition">
+              <app-stock-composition [data]="this.PraticeModeService.getRecord().stockVolumes">
+              </app-stock-composition>
+            </mat-tab>
+            <mat-tab label="stock-price-composition">
+              <app-assest-composition [volumeData]="this.PraticeModeService.getRecord().stockVolumes"
+                [priceData]="this.PraticeModeService.getAssest()" [onlyStock]="true"></app-assest-composition>
+            </mat-tab>
+            <mat-tab label="assest-composition">
+              <app-assest-composition [volumeData]="this.PraticeModeService.getRecord().stockVolumes"
+                [priceData]="this.PraticeModeService.getAssest()"></app-assest-composition>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col buysell">
+      <mat-card class="example-card" style="height: 25rem;">
+        <mat-card-title>manage ur stock</mat-card-title>
+        <mat-card-subtitle>u can buy or sell stock here</mat-card-subtitle>
+        <mat-card-content>
+          <div class="container-fluid" id="stockInfoContainer">
+            <div class="row">
+              <div class="col-6">
+                <form [formGroup]="form">
+                  <input type="text" list="codeNmLs" class="form-control form-input" formControlName="code"
+                    placeholder="please enter the code for search" (ngModelChange)="selectCodeNmLs()">
+                  <datalist id='codeNmLs'>
+                    <div *ngIf="codeNmLs">
+                      <div *ngFor="let codeNm of this.codeNmLs">
+                        <option value="{{codeNm.Code}} - {{codeNm.Name}}"></option>
+                      </div>
+                    </div>
+                  </datalist>
+                </form>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <app-stock-manage [code]="this.form.value.code"></app-stock-manage>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-candlestick-chart [code]="this.form.value.code"></app-candlestick-chart>
+    </div>
+  </div>
+</div>

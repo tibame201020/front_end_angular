@@ -1,0 +1,26 @@
+<br>
+
+<mat-tab-group>
+  <mat-tab label="All Public Articles">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" id="rowCenter">
+          <div *ngFor="let article of articles" class="card">
+            <app-article-intro [article]="article"></app-article-intro>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="My Articles" *ngIf="ownArticles.length">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" id="rowCenter">
+          <div *ngFor="let article of ownArticles" class="card">
+            <app-article-intro [article]="article"></app-article-intro>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

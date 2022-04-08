@@ -1,0 +1,121 @@
+<div class="container front_index_content">
+
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <a class="nav-link" href="#" routerLink="/read/all">
+            <h1><strong>Lastest Articles</strong></h1>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" *ngIf="getArticlesStates == 2">
+          <div *ngIf="!lastestArticles.length">
+            no lastest-articles
+          </div>
+          <div *ngIf="lastestArticles.length">
+            <div *ngFor="let article of lastestArticles">
+              <div style="text-align: left; width: 70%; margin-left: 15%;" (click)="toArticleDetail(article)"
+                class='article'>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <h3><strong><i class="material-icons">
+                          article
+                        </i> {{article.title}}</strong> [ {{article.codeNm}} ]</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <span><i class="material-icons">
+                        calendar_month
+                      </i>{{article.updateTime | date:'yyyy/MM/dd' }}</span>
+                  </div>
+                  <div class="col-7">
+                    <span><i class="material-icons">
+                        account_circle
+                      </i>{{article.account}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" *ngIf="!getArticlesStates" style="height: 10rem;">
+          <app-loading></app-loading>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <a class="nav-link" href="#" routerLink="/read/news">
+            <h1><strong>Lastest News</strong></h1>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" *ngIf="getNewsStates == 2">
+          <div *ngIf="!lastestNews.length">
+            no lastest-news
+          </div>
+          <div *ngIf="lastestNews.length">
+            <div *ngFor="let news of lastestNews">
+              <div style="text-align: left; width: 70%; margin-left: 15%;">
+                <i class="material-icons">
+                  newspaper
+                </i>
+                <a href={{news.Url}} class="link-info">{{news.Title}}</a>
+                <h6 class="card-subtitle mb-2 text-muted">{{news.Date}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" *ngIf="!getNewsStates" style="height: 10rem;">
+          <app-loading></app-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="this.authService.isLogIn()">
+    <div class="col">
+      <div class="row">
+        <div class="col-12">
+          <hr>
+          <a class="nav-link" href="#" routerLink="/pratice/home">
+            <h1><strong>Pratice Mode Rank</strong></h1>
+          </a>
+        </div>
+        <div class="col-12" *ngIf="getRankStates == 0" style="height: 10rem;">
+          <app-loading></app-loading>
+        </div>
+        <div class="col-12" *ngIf="getRankStates">
+          <div *ngIf="!practiceRankTotal.length">
+            there is no opening data to rank
+          </div>
+          <div *ngIf="practiceRankTotal.length">
+            <div>
+              <mat-tab-group id='maintab-basic'>
+                <mat-tab label="total-rank">
+                  <app-rank-echarts [rankArray]="practiceRankTotal"></app-rank-echarts>
+                </mat-tab>
+                <mat-tab label="stock-rank">
+                  <app-rank-echarts [rankArray]="practiceRankStock"></app-rank-echarts>
+                </mat-tab>
+                <mat-tab label="remainCash-rank">
+                  <app-rank-echarts [rankArray]="practiceRankCash"></app-rank-echarts>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

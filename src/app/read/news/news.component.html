@@ -1,0 +1,10 @@
+<br>
+<br>
+
+<div *ngFor="let news of newsArray" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{news.Title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{news.Date}}</h6>
+    <a href={{news.Url}}><i class="material-icons">remove_red_eye</i> {{news.Url}}</a>
+  </div>
+</div>

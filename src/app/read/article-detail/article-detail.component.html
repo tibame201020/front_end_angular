@@ -1,0 +1,39 @@
+<br>
+<br>
+<div *ngIf="this.ReadService.getArticle()">
+  <div class="container-fluid" style="width: 80%; margin-left: 5%;">
+    <div class="row">
+      <div class="col-12">
+        <h1><strong>
+            {{this.ReadService.getArticle().title}}
+          </strong></h1>
+      </div>
+      <div class="col-12">
+        <h6>
+          {{this.ReadService.getArticle().codeNm}}
+        </h6>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <div class="row">
+          <div class="col-12">
+            <h6>
+              {{this.ReadService.getArticle().account}}
+            </h6>
+          </div>
+          <div class="col-12">
+            <span>
+              {{this.ReadService.getArticle().updateTime | date:'yyyy/MM/dd hh:mm:ss'}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-10">
+        <ckeditor [editor]="Editor" [config]="config" data={{this.ReadService.getArticle().ckContent}}
+          [disabled]="true"></ckeditor>
+      </div>
+    </div>
+  </div>
+</div>

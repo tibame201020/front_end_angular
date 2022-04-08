@@ -1,0 +1,134 @@
+<hr>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Practice Mode Rank</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" *ngIf="states == 2">
+      <mat-tab-group id='maintab-basic'>
+        <mat-tab label="Total-Rank">
+          <div class="table-scroll">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 7rem;">rank</th>
+                  <th scope="col" style="width: 10rem;">name</th>
+                  <th scope="col">money</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of totalList; let i=index" (click)="getSelectAccount(item.name)">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{item.name}}</td>
+                  <td>{{item.money | number}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Stock-Rank">
+          <div class="table-scroll">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 7rem;">rank</th>
+                  <th scope="col" style="width: 10rem;">name</th>
+                  <th scope="col">money</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of stockAssetsList; let i=index" (click)="getSelectAccount(item.name)">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{item.name}}</td>
+                  <td>{{item.money | number}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="RemainCash-Rank">
+          <div class="table-scroll">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 7rem;">rank</th>
+                  <th scope="col" style="width: 10rem;">name</th>
+                  <th scope="col">money</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of remainCashList; let i=index" (click)="getSelectAccount(item.name)">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{item.name}}</td>
+                  <td>{{item.money | number}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="col">
+      <div *ngIf="states == 1">
+        <hr>
+        there is no opening data to rank
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="selectAccount && this.PraticeModeService.getRecord() && this.selectAccountStates == 2">
+    <div class="col">
+      <hr>
+      <mat-card class="example-card" style="height: 25rem;">
+        <mat-card-title>{{this.PraticeModeService.getRecord().accountOutline}}</mat-card-title>
+        <mat-card-subtitle>{{this.PraticeModeService.getRecord().recordPk.date}}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="stock-composition">
+              <app-stock-composition [data]="this.PraticeModeService.getRecord().stockVolumes">
+              </app-stock-composition>
+            </mat-tab>
+            <mat-tab label="stock-price-composition">
+              <app-assest-composition [volumeData]="this.PraticeModeService.getRecord().stockVolumes"
+                [priceData]="this.PraticeModeService.getAssest()" [onlyStock]="true"></app-assest-composition>
+            </mat-tab>
+            <mat-tab label="assest-composition">
+              <app-assest-composition [volumeData]="this.PraticeModeService.getRecord().stockVolumes"
+                [priceData]="this.PraticeModeService.getAssest()"></app-assest-composition>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+  <div class="row" *ngIf="selectAccount && !this.selectAccountStates">
+    <div class="col">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <app-loading></app-loading>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!states">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <app-loading></app-loading>
+</div>

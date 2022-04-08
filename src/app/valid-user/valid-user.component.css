@@ -1,0 +1,11 @@
+.message {
+  margin:0px 500;
+  text-align:center;
+  color: #6c757d!important;
+}
+a {
+	color: #32797c;
+}
+a:focus, a:hover {
+	color: #009898;
+}

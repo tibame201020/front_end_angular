@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+/* .ck-editor__main{
+  max-width: 50rem;
+} */
+
+.ck-editor__editable_inline {
+  min-height: 10rem;
+}
+.ck-read-only {
+  border: 0em !important;
+}
+.ck-sticky-panel__content {
+  display: none;
+}
+
+
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  max-width: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --ck-image-style-spacing: 1.5em;
+}
+.image-style .image-style-side, .image-style .image-style-align-left, .image-style .image-style-align-center, .image-style .image-style-align-right {
+  max-width: 50%;
+}
+.image-style .image-style-side {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}
+.image-style .image-style-align-left {
+  float: left;
+  margin-right: var(--ck-image-style-spacing);
+}
+.image-style .image-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-style .image-style-align-right {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}
+
+.media > div{
+  width: 100%;
+}

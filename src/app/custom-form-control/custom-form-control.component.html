@@ -1,0 +1,16 @@
+<div [formGroup]="this.CustomInput.form">
+  <div class="form-group has-feedback inputControl">
+    <input type="{{this.CustomInput.type}}" class="form-control form-input"
+      formControlName="{{this.CustomInput.fieldName}}" placeholder="please enter the {{this.CustomInput.fieldName}}"
+      required  autocomplete="off">
+    <span class="glyphicon form-control-feedback"
+      *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].invalid && (this.CustomInput.form.controls[this.CustomInput.fieldName].dirty || this.CustomInput.form.controls[this.CustomInput.fieldName].touched)">
+      <span *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].errors"><pre *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].errors!['required']">{{this.CustomInput.errMsg.required.length? this.CustomInput.errMsg.required: 'the ' + this.CustomInput.fieldName + ' is required'}}</pre>
+        <pre *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].errors!['pattern']">{{this.CustomInput.errMsg.regex.length? this.CustomInput.errMsg.regex: 'the ' + this.CustomInput.fieldName + 'format is un-correct'}}</pre>
+        <pre *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].errors!['unique']">{{this.CustomInput.errMsg.custom.length? this.CustomInput.errMsg.custom: 'the ' + this.CustomInput.fieldName + ' has been used'}}</pre>
+        <pre *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].errors!['serverError']">{{this.CustomInput.form.controls[this.CustomInput.fieldName].errors!['serverError']}}</pre>
+      </span>
+    </span>
+    <pre class = "valid" *ngIf="this.CustomInput.form.controls[this.CustomInput.fieldName].valid && this.CustomInput.form.controls[this.CustomInput.fieldName].asyncValidator"> the {{this.CustomInput.fieldName}} good to use</pre>
+  </div>
+</div>

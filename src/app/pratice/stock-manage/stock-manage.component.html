@@ -1,0 +1,31 @@
+<table class="table caption-top">
+  <tbody>
+    <tr>
+      <th scope="row" style="width: 10rem;">股市代號</th>
+      <td>{{code || '請輸入股市代號'}}</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width: 10rem;">price</th>
+      <td>{{price || ''}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <span>calc : </span>
+      <span *ngIf="price && this.form.value.volume">{{price}} * {{this.form.value.volume}} = {{price * this.form.value.volume | number}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="form">
+        <input type="number" class="form-control in-line" formControlName="volume">
+      </form>
+    </div>
+    <div class="col">
+      <button class="btn btn" (click)="buy()"><i class="material-icons">credit_card</i>buy</button> |
+      <button class="btn btn" (click)="sell()"><i class="material-icons">input</i>sell</button>
+    </div>
+  </div>
+</div>

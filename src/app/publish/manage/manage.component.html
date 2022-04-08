@@ -1,0 +1,156 @@
+<h2>Article-Array</h2>
+<hr>
+
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">publish</i>
+      <span>Published</span>
+    </ng-template>
+    <div class="container-fluid">
+      <div class="row list-area">
+        <div class="col-12" *ngIf="!this.publishedArray.length">
+          the array is empty
+        </div>
+        <div class="col-12" *ngIf="this.publishedArray.length">
+          <table class="table caption-top table-hover">
+            <caption>Published-Article-Array</caption>
+            <thead>
+              <tr>
+                <th scope="col">title</th>
+                <th scope="col">codeNm</th>
+                <th scope="col">state</th>
+                <th scope="col">visibility</th>
+                <th scope="col">createTime</th>
+                <th scope="col">updateTime</th>
+                <th scope="col">edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of publishedArray">
+                <td scope="col">{{article.title}}</td>
+                <td scope="col">{{article.codeNm}}</td>
+                <td scope="col">{{article.state}}</td>
+                <td scope="col">{{article.visibility}}</td>
+                <td scope="col">{{article.createTime | date:'yyyy/MM/dd'}}</td>
+                <td scope="col">{{article.updateTime | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+                <td>
+                  <a routerLink="" (click)="editArticle(article)">
+                    <i class="material-icons">edit</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state == 'publish'" (click)="deleteArticle(article)">
+                     <i class="material-icons">delete_forever</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state != 'publish'" (click)="restoreArticle(article)">
+                    <i class="material-icons">restore</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">history</i>
+      <span>History</span>
+    </ng-template>
+    <div class="container-fluid">
+      <div class="row list-area">
+        <div class="col-12" *ngIf="!this.historyArray.length">
+          the array is empty
+        </div>
+        <div class="col-12" *ngIf="this.historyArray.length">
+          <table class="table caption-top table-hover">
+            <caption>History-Article-Array</caption>
+            <thead>
+              <tr>
+                <th scope="col">title</th>
+                <th scope="col">codeNm</th>
+                <th scope="col">state</th>
+                <th scope="col">visibility</th>
+                <th scope="col">createTime</th>
+                <th scope="col">updateTime</th>
+                <th scope="col">edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of historyArray">
+                <td scope="col">{{article.title}}</td>
+                <td scope="col">{{article.codeNm}}</td>
+                <td scope="col">{{article.state}}</td>
+                <td scope="col">{{article.visibility}}</td>
+                <td scope="col">{{article.createTime | date:'yyyy/MM/dd'}}</td>
+                <td scope="col">{{article.updateTime | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+                <td>
+                  <a routerLink="" (click)="editArticle(article)">
+                    <i class="material-icons">edit</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state == 'publish'" (click)="deleteArticle(article)">
+                     <i class="material-icons">delete_forever</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state != 'publish'" (click)="restoreArticle(article)">
+                    <i class="material-icons">restore</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">assignment</i>
+      <span>All</span>
+    </ng-template>
+    <div class="container-fluid">
+      <div class="row list-area">
+        <div class="col-12" *ngIf="!this.articleArray.length">
+          the array is empty
+        </div>
+        <div class="col-12" *ngIf="this.articleArray.length">
+          <table class="table caption-top table-hover">
+            <caption>Article-Array</caption>
+            <thead>
+              <tr>
+                <th scope="col">title</th>
+                <th scope="col">codeNm</th>
+                <th scope="col">state</th>
+                <th scope="col">visibility</th>
+                <th scope="col">createTime</th>
+                <th scope="col">updateTime</th>
+                <th scope="col">edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of articleArray">
+                <td scope="col">{{article.title}}</td>
+                <td scope="col">{{article.codeNm}}</td>
+                <td scope="col">{{article.state}}</td>
+                <td scope="col">{{article.visibility}}</td>
+                <td scope="col">{{article.createTime | date:'yyyy/MM/dd'}}</td>
+                <td scope="col">{{article.updateTime | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+                <td>
+                  <a routerLink="" (click)="editArticle(article)">
+                    <i class="material-icons">edit</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state == 'publish'" (click)="deleteArticle(article)">
+                     <i class="material-icons">delete_forever</i>
+                  </a>
+                  <a routerLink="" *ngIf="article.state != 'publish'" (click)="restoreArticle(article)">
+                    <i class="material-icons">restore</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

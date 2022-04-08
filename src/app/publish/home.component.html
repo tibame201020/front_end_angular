@@ -1,0 +1,84 @@
+<div class="container-fluid publish-content">
+  <div class="row justify-content-center">
+    <h2>{{title}}</h2>
+  </div>
+  <br>
+  <form [formGroup]="form" (submit)="onSubmit(form)">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+
+            <div class="col-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Aricle Visibility</mat-label>
+                <mat-select formControlName="visibility" >
+                  <mat-option value="all">every one can read</mat-option>
+                  <mat-option value="own">only for my self record</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-12">
+              <div class="form-group has-feedback">
+                <input type="text" list="codeNmLs" class="form-control form-input" formControlName="codeNm"
+                  placeholder="please search the codeNm for enter here" (ngModelChange)="selectCodeNmLs()">
+                <datalist id='codeNmLs'>
+                  <div *ngIf="codeNmLs">
+                    <div *ngFor="let codeNm of this.codeNmLs">
+                      <option value="{{codeNm.Code}} - {{codeNm.Name}}"></option>
+                    </div>
+                  </div>
+                </datalist>
+                <span class="glyphicon form-control-feedback"
+                  *ngIf="form.controls['codeNm'].invalid && (form.controls['codeNm'].dirty || form.controls['codeNm'].touched)">
+                  <span *ngIf="form.controls['codeNm'].errors">
+                    <pre *ngIf="form.controls['codeNm'].errors['required']"> the codeNm is required </pre>
+                    <pre *ngIf="form.controls['codeNm'].errors['isOK']"> the stock-code is un-correct</pre>
+                    <pre *ngIf="form.controls['codeNm'].errors['serverError']"> {{form.controls['codeNm'].errors['serverError']}}</pre>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control form-input" formControlName="title"
+                  placeholder="please enter the title">
+                <span class="glyphicon form-control-feedback"
+                  *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)">
+                  <span *ngIf="form.controls['title'].errors">
+                    <pre *ngIf="form.controls['title'].errors['required']"> the title is required </pre>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ckeditor [editor]="Editor" [config]="config" (ready)="onReady($event)" data="" formControlName='ckContent'>
+          </ckeditor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div *ngIf="!form.valid">
+            <button id="requiredMsg" type="submit" class="btn btn-default submit" [disabled]="true">plz check the
+              all required fileds</button>
+          </div>
+          <div *ngIf="form.valid">
+            <button id="submit" type="submit" class="btn btn-default submit" [disabled]="false">{{submitMsg}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col basic-info">
+          <app-candlestick-chart [code]="this.form.value.codeNm"></app-candlestick-chart>
+        </div>
+      </div>
+    </div>
+  </form>

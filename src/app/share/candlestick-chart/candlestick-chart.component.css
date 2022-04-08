@@ -1,0 +1,7 @@
+#rowCenter, .mat-tab-label-container, .mat-tab-list {
+  text-align: center;
+}
+
+#maintab-basic{
+  display: none;
+}

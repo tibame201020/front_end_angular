@@ -1,0 +1,53 @@
+<mat-tab-group id='maintab-basic'>
+  <mat-tab label="K線圖">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" id="rowCenter">
+          <app-date-picker-range (newItemEvent)="getDataRange($event)"></app-date-picker-range>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" id="rowCenter">
+          <app-k-line [inputData]="dataLs"></app-k-line>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="basic-info">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" id="rowCenter">
+          <app-stock-basic-info></app-stock-basic-info>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<div *ngIf="showHide">
+  <mat-tab-group>
+    <mat-tab label="K線圖">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col" id="rowCenter">
+            <app-date-picker-range (newItemEvent)="getDataRange($event)"></app-date-picker-range>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" id="rowCenter">
+            <app-k-line [inputData]="dataLs"></app-k-line>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="basic-info">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col" id="rowCenter">
+            <app-stock-basic-info [inputData]="companyInfo"></app-stock-basic-info>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

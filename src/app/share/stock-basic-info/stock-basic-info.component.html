@@ -1,0 +1,53 @@
+<div *ngIf="noData">
+  <div>
+    <span>
+      twse doesn't has this code company-info, can check with here.
+    </span>
+  </div>
+  <div>
+    <a href="https://openapi.twse.com.tw/v1/opendata/t187ap03_L">
+      https://openapi.twse.com.tw/v1/opendata/t187ap03_L
+    </a>
+  </div>
+</div>
+
+<div *ngIf="!noData">
+  <table class="table table-hover" style="width: 30rem;">
+    <caption>the basic info</caption>
+    <tbody>
+      <tr>
+        <th scope="row" style="width: 10rem;">公司代號</th>
+        <td>{{code}}</td>
+      </tr>
+      <tr>
+        <th scope="row">公司名稱</th>
+        <td>{{name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">上市日期</th>
+        <td>{{publishDate}}</td>
+      </tr>
+      <tr>
+        <th scope="row">實收資本額</th>
+        <td>{{paidInCapital}}</td>
+      </tr>
+      <tr>
+        <th scope="row">董事長</th>
+        <td>{{chairman}}</td>
+      </tr>
+      <tr>
+        <th scope="row">總經理</th>
+        <td>{{manager}}</td>
+      </tr>
+      <tr>
+        <th scope="row">住址</th>
+        <td>{{address}}</td>
+      </tr>
+      <tr>
+        <th scope="row">網址</th>
+        <td>{{url}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

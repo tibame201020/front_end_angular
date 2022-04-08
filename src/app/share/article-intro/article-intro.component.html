@@ -1,0 +1,22 @@
+<!-- <div class="card" style="width: 18rem;" (click)="toArticleDetail(article)">
+  <div class="card-body">
+    <h5 class="card-title">{{article.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{article.codeNm}}</h6>
+    <ckeditor [editor]="Editor" [config]="config" data={{article.ckContent}} [disabled]="true">
+    </ckeditor>
+    <h6 class="card-subtitle mb-2 text-muted">updateTime : {{article.updateTime | date:'yyyy/MM/dd hh:mm:ss'}}</h6>
+  </div>
+</div> -->
+
+
+<div class="card-body" (click)="toArticleDetail(article)">
+  <h5 class="card-title"><i class="material-icons">
+    article
+    </i>[[{{article.codeNm}}]] - {{article.title}}</h5>
+  <h6 class="card-subtitle mb-2 text-muted"><i class="material-icons">
+    account_circle
+  </i>{{article.account}}</h6>
+  <h6 class="card-subtitle mb-2 text-muted"><span class="material-icons">
+    calendar_month
+    </span>{{article.updateTime | date:'yyyy/MM/dd hh:mm:ss'}}</h6>
+</div>

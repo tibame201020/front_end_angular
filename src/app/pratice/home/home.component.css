@@ -1,0 +1,6 @@
+.table-scroll {
+  width:100% !important;
+  overflow:auto !important;
+  max-height:200px !important;
+  min-height: 200px !important;
+}

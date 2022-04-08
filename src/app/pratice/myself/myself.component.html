@@ -1,0 +1,38 @@
+<div class="noHaveRecord" *ngIf="this.PraticeModeService.states == 1">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2>Record</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>u don't have record right now</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        create now?
+        <button mat-button color="accent" (click)="createSelfRecord()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="haveRecord" *ngIf="this.PraticeModeService.states == 2">
+  <app-self-info></app-self-info>
+</div>
+
+<div class="loading" *ngIf="this.PraticeModeService.states != 2 && this.PraticeModeService.states != 1">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <app-loading></app-loading>
+</div>
+

@@ -1,0 +1,79 @@
+<div class="container loginForm">
+  <h2>Use Ur Email Login</h2>
+  <br>
+  <div *ngIf="!mailCheck">
+    <form [formGroup]="form" novalidate (submit)="onSubmit(form)">
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control form-input" formControlName="mail" placeholder="please enter ur mail"
+          required >
+        <span class="glyphicon form-control-feedback"
+          *ngIf="form.controls['mail'].invalid && (form.controls['mail'].dirty || form.controls['mail'].touched)">
+          <span *ngIf="form.controls['mail'].errors">
+            <pre *ngIf="form.controls['mail'].errors['required']"> the mail is required </pre>
+            <pre *ngIf="form.controls['mail'].errors['pattern']"> the mail is incorrect </pre>
+          </span>
+        </span>
+      </div>
+
+      <div *ngIf="!form.valid">
+        <button *ngIf="!alreadyCheck" id="requiredMsg" type="submit" class="btn btn-default submit"
+          [disabled]="true">Plz Enter The Necessary
+          Info</button>
+      </div>
+      <div *ngIf="form.valid">
+        <button *ngIf="!alreadyCheck" id="submit" type="submit" class="btn btn-default submit" value="Login"
+          [disabled]="!form.valid">Send The
+          Verification Code</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="mailCheck">
+    <div class="form-group has-feedback">
+      <span class="form-control form-input">{{mail}}</span>
+    </div>
+    <div class="form-group has-feedback">
+      <input class="form-control form-input" type="text" [(ngModel)]="simpleCode" maxlength="5"
+        placeholder="enter the code what ur email receive">
+      <span *ngIf="simpleCode.length && checkSimpleCodeLength()" class="glyphicon form-control-feedback">
+        <pre> the verify code's length needs five </pre>
+      </span>
+    </div>
+    <div *ngIf="checkSimpleCodeLength()">
+      <button id="requiredMsg" type="submit" class="btn btn-default submit" [disabled]="true">Plz Enter The Necessary
+        Info</button>
+    </div>
+    <div *ngIf="!checkSimpleCodeLength()">
+      <button type="button" class="btn btn-default submit" (click)="useSimpleCodeLogin()"
+        [disabled]="checkSimpleCodeLength()">Enter The Verification Code To Login</button>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="alreadyCheck">
+      <div class="form-group has-feedback">
+        <input class="form-control form-input" type="text" [(ngModel)]="simpleCode" maxlength="5"
+          placeholder="enter the code what ur email receive">
+        <span *ngIf="simpleCode.length && checkSimpleCodeLength()" class="glyphicon form-control-feedback">
+          <pre> the verify code's length needs five </pre>
+        </span>
+      </div>
+    </div>
+    <div *ngIf="alreadyCheck">
+    <div *ngIf="checkSimpleCodeLength() || !form.valid">
+      <button id="requiredMsg" type="submit" class="btn btn-default submit" [disabled]="true">Plz Enter The Necessary
+        Info</button>
+    </div>
+    <div *ngIf="!checkSimpleCodeLength() && form.valid">
+      <button type="button" class="btn btn-default submit" (click)="useSimpleCodeLogin()"
+        [disabled]="checkSimpleCodeLength()">Enter The Verification Code To Login</button>
+    </div>
+
+    <button *ngIf="alreadyCheck" type="button" class="btn btn-default submit" (click)="this.alreadyCheck=false">Back To Send Code To Mail</button>
+
+    </div>
+
+
+    <button *ngIf="!alreadyCheck && !mailCheck" type="button" class="btn btn-default submit" (click)="this.alreadyCheck=true">Already
+      Have Verification Code To
+      Login</button>
+  </div>
+</div>
